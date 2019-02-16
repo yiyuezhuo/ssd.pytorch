@@ -1,3 +1,12 @@
+# Fork modification:
+
+* `test-custom.py`: Code modified from `test.py` to test my customized switch dataset. 
+* `data/switch.py`: Code modified from `voc0712.py` to test my customized switch dataset.
+* `parse_eval.py`: Convert text output of `test-custom.py` to python object and plot box and text as detection fashion.
+* A lot of common modification to fix `pytorch 0.4` compatible problem for forks of the original repo. Unfortunately my git commit history seems weird due to unknow problem.
+
+<img src="doc/switch-detection.jpg">
+
 # SSD: Single Shot MultiBox Object Detector, in PyTorch
 A [PyTorch](http://pytorch.org/) implementation of [Single Shot MultiBox Detector](http://arxiv.org/abs/1512.02325) from the 2016 paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.  The official and original Caffe code can be found [here](https://github.com/weiliu89/caffe/tree/ssd).
 

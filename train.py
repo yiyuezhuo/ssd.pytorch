@@ -168,7 +168,14 @@ def train():
             adjust_learning_rate(optimizer, args.gamma, step_index)
 
         # load train data
-        images, targets = next(batch_iterator)
+        #images, targets = next(batch_iterator)
+        try:
+            images, targets = next(batch_iterator)
+        except StopIteration:
+            batch_iterator = iter(data_loader)
+            images, targets = next(batch_iterator)
+        except Exception as e:
+            print("Loading data Exception:", e)
 
         if args.cuda:
             images = Variable(images.cuda())
@@ -199,7 +206,7 @@ def train():
             update_vis_plot(iteration, loss_l.item(), loss_c.item(),
                             iter_plot, epoch_plot, 'append')
 
-        if iteration != 0 and iteration % 5000 == 0:
+        if iteration != 0 and iteration % 1000 == 0:
             print('Saving state, iter:', iteration)
             torch.save(ssd_net.state_dict(), 'weights/ssd300_COCO_' +
                        repr(iteration) + '.pth')
@@ -250,6 +257,7 @@ def update_vis_plot(iteration, loc, conf, window1, window2, update_type,
         update=update_type
     )
     # initialize epoch plot on first iteration
+    '''
     if iteration == 0:
         viz.line(
             X=torch.zeros((1, 3)).cpu(),
@@ -257,6 +265,7 @@ def update_vis_plot(iteration, loc, conf, window1, window2, update_type,
             win=window2,
             update=True
         )
+    '''
 
 
 if __name__ == '__main__':

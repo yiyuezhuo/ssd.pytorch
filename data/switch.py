@@ -21,6 +21,7 @@ class SWITCHAnnotationTransform(VOCAnnotationTransform):
 class SWITCHDetection(VOCDetection):
     def __init__(self, root,
                  transform=None, target_transform=SWITCHAnnotationTransform(),
+                 image_set = 'trainval.txt',
                  dataset_name='switch'):
         self.root = root
         #self.image_set = image_sets
@@ -30,5 +31,5 @@ class SWITCHDetection(VOCDetection):
         self._annopath = osp.join('%s', 'Annotations', '%s.xml')
         self._imgpath = osp.join('%s', 'JPEGImages', '%s.jpg')
         self.ids = list()
-        for line in open(osp.join(root, 'ImageSets', 'Main', 'trainval.txt')):
+        for line in open(osp.join(root, 'ImageSets', 'Main', image_set)):
             self.ids.append((root, line.strip()))
