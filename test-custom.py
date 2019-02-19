@@ -9,11 +9,11 @@ import torchvision.transforms as transforms
 from torch.autograd import Variable
 from data import VOC_ROOT, VOC_CLASSES as labelmap
 from PIL import Image
-from data import VOCAnnotationTransform, VOCDetection, BaseTransform, VOC_CLASSES
+#from data import VOCAnnotationTransform, VOCDetection, BaseTransform, VOC_CLASSES
 import torch.utils.data as data
 from ssd import build_ssd
 
-from data import SWITCHDetection
+from data import SWITCHDetection,SWITCHAnnotationTransform, BaseTransform
 from data import SWITCH_CLASSES as labelmap
 
 parser = argparse.ArgumentParser(description='Single Shot MultiBox Detection')
@@ -104,9 +104,10 @@ def test_switch():
     net.eval()
     print('Finished loading model!')
     # load data
-    testset = SWITCHDetection(args.voc_root,  
-                              transform=VOCAnnotationTransform(),
-                              image_set = 'test.txt')
+    testset = SWITCHDetection(args.voc_root,  'test.txt',
+                              None,
+                              SWITCHAnnotationTransform(),
+                              )
     if args.cuda:
         net = net.cuda()
         cudnn.benchmark = True

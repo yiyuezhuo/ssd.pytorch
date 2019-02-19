@@ -46,7 +46,7 @@ def display_rectangle(record_list, root, target_root, verbose=True):
     for pred in record['predictions']:
       c = pred['coord']
       xy = [(c[0], c[1]), (c[2], c[3])]
-      label = pred['class']
+      label = pred['class'] + ' ' + str(pred['score'])
 
       draw.text((xy[0][0],xy[0][1]-40), label, 
               font=fnt, fill = (255,0,255))
@@ -59,5 +59,7 @@ def display_rectangle(record_list, root, target_root, verbose=True):
         print('{} -> {}'.format(path, target_path))
 
 
-
+'''
 record_list = parse('eval/test1.txt')
+display_rectangle(record_list, '/media/yiyuezhuo/DATA/agent3/lab/switch/JPEGImages','eval/result')
+'''

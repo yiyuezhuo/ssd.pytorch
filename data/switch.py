@@ -20,9 +20,10 @@ class SWITCHAnnotationTransform(VOCAnnotationTransform):
 
 class SWITCHDetection(VOCDetection):
     def __init__(self, root,
-                 transform=None, target_transform=SWITCHAnnotationTransform(),
                  image_set = 'trainval.txt',
-                 dataset_name='switch'):
+                 transform=None, target_transform=SWITCHAnnotationTransform(),
+                 dataset_name='switch',
+                 ):
         self.root = root
         #self.image_set = image_sets
         self.transform = transform
