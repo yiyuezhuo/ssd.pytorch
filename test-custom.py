@@ -78,7 +78,7 @@ def test_net(save_folder, net, cuda, testset, transform, thresh):
                             str(score) + ' '+' || '.join(str(c) for c in coords) + '\n')
                 j += 1
 
-
+'''
 def test_voc():
     # load net
     num_classes = len(VOC_CLASSES) + 1 # +1 background
@@ -95,7 +95,7 @@ def test_voc():
     test_net(args.save_folder, net, args.cuda, testset,
              BaseTransform(net.size, (104, 117, 123)),
              thresh=args.visual_threshold)
-
+'''
 def test_switch():
     # load net
     num_classes = 2 + 1 # +1 background

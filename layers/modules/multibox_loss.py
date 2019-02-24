@@ -96,11 +96,10 @@ class MultiBoxLoss(nn.Module):
         # Hard Negative Mining
         #loss_c[pos] = 0  # filter out pos boxes for now
         #loss_c = loss_c.view(num, -1)
-        #print(loss_c)
         loss_c = loss_c.view(num, -1)
+        loss_c[pos] = 0
         #print(loss_c)
         #print(pos)
-        loss_c[pos] = 0
         _, loss_idx = loss_c.sort(1, descending=True)
         _, idx_rank = loss_idx.sort(1)
         num_pos = pos.long().sum(1, keepdim=True)
